@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tech365-deployment
+spec:
+  selector:
+    matchLabels:
+      app: tech365
+  replicas: 1 # tells deployment to run 2 pods matching the template
+  template:
+    metadata:
+      labels:
+        app: tech365
+    spec:
+      containers:
+      - name: tech365
+        image: 813817168689.dkr.ecr.us-east-1.amazonaws.com/follyimage
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+
+---
+
+apiVersion: apps/v1
+kind: Service
+metadata:
+  Labels:
+    app: tech365
+    k8s-app: tech365
+  name: tech365
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8080
+  type: LoadBalancer
+  selector:
+    app: tech365
+
+    
