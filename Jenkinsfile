@@ -10,13 +10,13 @@ pipeline {
 			}
     }
 
-// 	stage('RunSCAAnalysisUsingSnyk') {
-//             steps {		
-// 				withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
-// 					sh 'mvn snyk:test -fn'
-// 				}
-// 			}
-//     }	
+	stage('RunSCAAnalysisUsingSnyk') {
+            steps {		
+				withCredentials([string(credentialsId: 'SNYK_TOKEN', variable: 'SNYK_TOKEN')]) {
+					sh 'mvn snyk:test -fn'
+				}
+			}
+    }	
 
 // building docker image
 //  stage('Build') { 
@@ -29,6 +29,16 @@ pipeline {
 //             }
 //     }
 
+// stage('Push') {
+//             steps {
+//                 script{
+//                     docker.withRegistry("https://583529678328.dkr.ecr.us-east-1.amazonaws.com", "ecr:us-east-1:myawscredentials") 
+// 			{
+//                     app.push("latest")
+//                     }
+//                 }
+//             }
+//     	}
 	
 
   }
